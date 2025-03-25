@@ -1,15 +1,21 @@
 {
   "version": 2,
   "functions": {
-    "api/*.php": { 
-      "runtime": "vercel-php@0.5.2" 
+    "api/*.php": {
+      "runtime": "vercel-php@0.5.2"
     }
   },
+  "builds": [
+    {
+      "src": "api/*.php",
+      "use": "@vercel/php"
+    }
+  ],
   "routes": [
     {
       "src": "/api/tutorial.php",
-      "headers": { 
-        "Location": "/tutorial" 
+      "headers": {
+        "Location": "/tutorial"
       },
       "status": 307
     },
@@ -25,5 +31,8 @@
       "src": "/public/(.*)",
       "dest": "/$1"
     }
-  ]
+  ],
+  "env": {
+    "PHP_DEPENDENCIES": "true"
+  }
 }
